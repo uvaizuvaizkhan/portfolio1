@@ -16,6 +16,7 @@
             background-color: #020617;
             font-family: 'Inter', sans-serif;
             color: white;
+            scroll-behavior: smooth;
         }
 
         #canvas-container {
@@ -39,17 +40,6 @@
             border: 1px solid rgba(59, 130, 246, 0.4);
             background: rgba(15, 23, 42, 0.9);
             transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .section-tag {
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #3b82f6;
-            margin-bottom: 1rem;
-            display: block;
         }
 
         .nav-link {
@@ -61,7 +51,16 @@
 
         .nav-link:hover { color: white; }
 
-        /* Smooth Scrollbar */
+        .section-tag {
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
         ::-webkit-scrollbar { width: 5px; }
         ::-webkit-scrollbar-track { background: #020617; }
         ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
@@ -72,13 +71,13 @@
     <div id="canvas-container"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center backdrop-blur-sm border-b border-white/5">
+    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
         <span class="text-lg font-bold tracking-tighter uppercase">KM / Engineering</span>
         <div class="hidden md:flex gap-10">
-            <a href="#profile" class="nav-link">Strategic Profile</a>
-            <a href="#experience" class="nav-link">Milestones</a>
-            <a href="#expertise" class="nav-link">Technical Ecosystem</a>
-            <a href="mailto:Kingslymohan2017@gmail.com" class="text-blue-500 font-bold hover:text-blue-400 transition">Contact</a>
+            <a href="#profile" class="nav-link">Profile</a>
+            <a href="#experience" class="nav-link">Experience</a>
+            <a href="#education" class="nav-link">Education</a>
+            <a href="mailto:Kingslymohan2017@gmail.com" class="text-blue-500 font-bold">Contact</a>
         </div>
     </nav>
 
@@ -88,112 +87,131 @@
         <section id="profile" class="flex flex-col md:flex-row items-center gap-16 min-h-[70vh] mb-32">
             <div class="glass-card p-2 shadow-2xl tilt-element">
                 <div class="w-72 h-96 rounded-2xl overflow-hidden grayscale hover:grayscale-0 transition-all duration-1000">
-                    <!-- To change photo, upload a file named profile.jpg to your GitHub -->
                     <img src="profile.jpg" alt="Kingsly Mohan" class="w-full h-full object-cover">
                 </div>
             </div>
 
             <div class="flex-1 text-center md:text-left">
-                <span class="section-tag">Pipeline Rehabilitation Specialist</span>
-                <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tighter leading-none">
-                    KINGSLY <br> <span class="text-slate-500">MOHAN.</span>
+                <span class="section-tag">Senior Pipeline Rehabilitation Specialist</span>
+                <h1 class="text-6xl md:text-8xl font-bold mb-6 tracking-tighter leading-none uppercase">
+                    Kingsly <br> <span class="text-slate-500 font-light">Mohan.</span>
                 </h1>
                 <p class="text-xl text-slate-400 font-light mb-10 max-w-xl leading-relaxed">
-                    Mechanical Engineering graduate with <span class="text-white font-medium">8 years of operational mastery</span> in CIPP technology and high-precision infrastructure rehabilitation across the Middle East.
+                    Mechanical Engineering graduate with <span class="text-white font-medium">8 years of progressive expertise</span> in CIPP technology, robotic intervention, and high-precision infrastructure restoration.
                 </p>
                 
                 <div class="flex flex-wrap justify-center md:justify-start gap-12 border-t border-white/10 pt-10">
                     <div>
                         <p class="text-3xl font-bold text-white">300<span class="text-blue-500 font-light">+</span></p>
-                        <p class="text-xs uppercase text-slate-500 tracking-widest mt-1">KM Rehabilitated</p>
+                        <p class="text-xs uppercase text-slate-500 tracking-widest mt-1">KM Executed</p>
                     </div>
                     <div>
                         <p class="text-3xl font-bold text-white">UAE<span class="text-blue-500 font-light">/</span>QATAR</p>
-                        <p class="text-xs uppercase text-slate-500 tracking-widest mt-1">Operational Area</p>
-                    </div>
-                    <div>
-                        <p class="text-3xl font-bold text-white">8<span class="text-blue-500 font-light">+</span></p>
-                        <p class="text-xs uppercase text-slate-500 tracking-widest mt-1">Tenure Years</p>
+                        <p class="text-xs uppercase text-slate-500 tracking-widest mt-1">Regional Experience</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Experience Timeline -->
+        <!-- Experience Section -->
         <section id="experience" class="mb-32">
-            <span class="section-tag mb-12">Professional Trajectory</span>
+            <span class="section-tag mb-12">Professional Milestones</span>
             
-            <div class="space-y-12">
-                <!-- Role 1 -->
-                <div class="glass-card p-10 group cursor-default">
-                    <div class="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
+            <div class="space-y-8">
+                <!-- Veolia -->
+                <div class="glass-card p-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-6 gap-4">
                         <div>
-                            <h3 class="text-3xl font-bold text-white tracking-tight">Pipeline Rehabilitation Engineer</h3>
-                            <p class="text-xl text-blue-500 font-medium mt-1">Veolia Middle East Water Services LLC</p>
+                            <h3 class="text-2xl font-bold text-white">Pipeline Rehabilitation Engineer</h3>
+                            <p class="text-blue-500 font-medium">Veolia Middle East Water Services LLC — Abu Dhabi</p>
                         </div>
-                        <div class="text-right">
-                            <span class="text-xs font-mono bg-blue-600/10 text-blue-400 border border-blue-600/20 px-5 py-2 rounded-full uppercase tracking-[0.2em]">2026 — PRESENT</span>
-                        </div>
+                        <span class="text-xs font-mono bg-blue-600/10 text-blue-400 border border-blue-600/20 px-4 py-1 rounded-full">05/2026 — PRESENT</span>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-x-16 gap-y-6 text-slate-400">
-                        <p class="flex gap-4 items-start"><i class="fa-solid fa-check text-blue-500 mt-1"></i> Leadership of UV Curing, Robotic Cutting, and CIPP lining operations.</p>
-                        <p class="flex gap-4 items-start"><i class="fa-solid fa-check text-blue-500 mt-1"></i> Advanced CCTV diagnostics using IBAK IKAS Evolution & IPEK systems.</p>
-                        <p class="flex gap-4 items-start"><i class="fa-solid fa-check text-blue-500 mt-1"></i> Strategic management of site activities, manpower, and safety compliance.</p>
-                        <p class="flex gap-4 items-start"><i class="fa-solid fa-check text-blue-500 mt-1"></i> Preparation of technical documentation, QA/QC records, and dossiers.</p>
-                    </div>
+                    <ul class="grid md:grid-cols-2 gap-4 text-sm text-slate-400">
+                        <li>• Supervision of CIPP lining & robotic cutting operations.</li>
+                        <li>• Advanced CCTV condition assessment (IBAK / IPEK).</li>
+                        <li>• Technical QA/QC, Method Statements & Reporting.</li>
+                        <li>• Coordination of manpower, subcontractors & equipment.</li>
+                    </ul>
                 </div>
 
-                <!-- Role 2 -->
-                <div class="glass-card p-10 opacity-70 hover:opacity-100 transition-all">
-                    <div class="flex flex-col md:flex-row justify-between items-start gap-4">
+                <!-- IFG -->
+                <div class="glass-card p-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-6 gap-4">
                         <div>
-                            <h3 class="text-2xl font-bold text-white">Rehabilitation Specialist</h3>
-                            <p class="text-slate-400">Applus+ Velosi LLC — Qatar</p>
+                            <h3 class="text-2xl font-bold text-white">Pipeline Rehabilitation Engineer</h3>
+                            <p class="text-blue-500 font-medium">International Foundation Group — UAE</p>
                         </div>
-                        <span class="text-xs font-mono text-slate-600 uppercase tracking-widest">2018 — 2022</span>
+                        <span class="text-xs font-mono text-slate-500 border border-white/10 px-4 py-1 rounded-full">03/2023 — 05/2026</span>
                     </div>
+                    <ul class="grid md:grid-cols-2 gap-4 text-sm text-slate-400">
+                        <li>• On-site management of CIPP lining and robotic systems.</li>
+                        <li>• Operating ProKASRO and Reline Europe machinery.</li>
+                        <li>• Client coordination and HSE project compliance.</li>
+                    </ul>
+                </div>
+
+                <!-- Applus -->
+                <div class="glass-card p-10 opacity-70">
+                    <div class="flex flex-col md:flex-row justify-between items-start mb-6 gap-4">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Pipeline Rehabilitation Engineer</h3>
+                            <p class="text-blue-500 font-medium">Applus+ Velosi LLC — Qatar</p>
+                        </div>
+                        <span class="text-xs font-mono text-slate-500 border border-white/10 px-4 py-1 rounded-full">01/2018 — 12/2022</span>
+                    </div>
+                    <ul class="grid md:grid-cols-2 gap-4 text-sm text-slate-400">
+                        <li>• Executed large-scale sewer and stormwater projects.</li>
+                        <li>• Compliance with Ashghal (Qatar) standards & safety.</li>
+                        <li>• Detailed defect coding and shutdown planning.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <!-- Technical Ecosystem -->
-        <section id="expertise" class="mb-32">
-            <span class="section-tag text-center mb-12">Technical Specialization</span>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 border-t-2 border-blue-600">
-                    <i class="fa-solid fa-robot text-4xl mb-6 text-blue-500"></i>
-                    <h4 class="text-lg font-bold mb-4 uppercase tracking-tighter">Robotic Systems</h4>
-                    <p class="text-sm text-slate-500 leading-relaxed">Expert operation of ProKASRO robotic cutting systems for lateral reinstatement and obstruction removal.</p>
+        <!-- Education & Certifications -->
+        <section id="education" class="grid md:grid-cols-2 gap-16 mb-32">
+            <div>
+                <span class="section-tag mb-8">Academic Foundation</span>
+                <div class="space-y-6">
+                    <div class="border-l-2 border-blue-500 pl-6">
+                        <h4 class="font-bold text-white">Bachelor of Engineering (Mechanical)</h4>
+                        <p class="text-sm text-slate-500">Anna University, Chennai</p>
+                    </div>
+                    <div class="border-l-2 border-blue-500 pl-6">
+                        <h4 class="font-bold text-white">Diploma in Mechanical Engineering</h4>
+                        <p class="text-sm text-slate-500">Anna University, Chennai</p>
+                    </div>
                 </div>
-                <div class="glass-card p-8 border-t-2 border-blue-600">
-                    <i class="fa-solid fa-camera-retro text-4xl mb-6 text-blue-500"></i>
-                    <h4 class="text-lg font-bold mb-4 uppercase tracking-tighter">Diagnostics</h4>
-                    <p class="text-sm text-slate-500 leading-relaxed">Specialized in IBAK and IPEK CCTV condition assessment, defect coding, and rehabilitation analysis.</p>
-                </div>
-                <div class="glass-card p-8 border-t-2 border-blue-600">
-                    <i class="fa-solid fa-shield-halved text-4xl mb-6 text-blue-500"></i>
-                    <h4 class="text-lg font-bold mb-4 uppercase tracking-tighter">Operations</h4>
-                    <p class="text-sm text-slate-500 leading-relaxed">Full lifecycle management: CIPP Lining, UV Curing, QA/QC reporting, and site safety leadership.</p>
+            </div>
+            <div>
+                <span class="section-tag mb-8">Professional Credentials</span>
+                <div class="grid grid-cols-1 gap-3 text-sm text-slate-400">
+                    <p><i class="fa-solid fa-certificate text-blue-500 mr-2"></i> Certified CIPP Operator</p>
+                    <p><i class="fa-solid fa-certificate text-blue-500 mr-2"></i> CCTV Pipeline Assessment & Reporting</p>
+                    <p><i class="fa-solid fa-certificate text-blue-500 mr-2"></i> Diploma in Fire and Safety</p>
+                    <p><i class="fa-solid fa-certificate text-blue-500 mr-2"></i> HSE Induction & Confined Space Training</p>
                 </div>
             </div>
         </section>
 
         <!-- Footer -->
-        <footer class="py-20 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="text-center md:text-left">
-                <h2 class="text-3xl font-bold mb-2">Let's connect.</h2>
-                <a href="mailto:Kingslymohan2017@gmail.com" class="text-slate-400 hover:text-white transition">Kingslymohan2017@gmail.com</a>
+        <footer class="py-20 border-t border-white/5 text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-10">
+            <div>
+                <p class="text-xs uppercase tracking-widest text-slate-600 mb-2">Available for Strategic Opportunities</p>
+                <h2 class="text-3xl font-bold">Kingsly Mohan</h2>
+                <p class="text-slate-500 mt-2">Abu Dhabi, UAE | +971 56 248 3266</p>
             </div>
-            <div class="flex gap-10">
-                <a href="tel:+971562483266" class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-500 transition">+971 56 248 3266</a>
-                <a href="https://linkedin.com/in/kingsly-mohan-a97128186" target="_blank" class="text-xs uppercase tracking-widest text-slate-500 hover:text-blue-500 transition">LinkedIn</a>
+            <div class="flex gap-8">
+                <a href="mailto:Kingslymohan2017@gmail.com" class="text-2xl hover:text-blue-500 transition"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/kingsly-mohan-a97128186" target="_blank" class="text-2xl hover:text-blue-500 transition"><i class="fa-brands fa-linkedin"></i></a>
             </div>
         </footer>
 
     </main>
 
     <script>
-        // --- PROFESSIONAL 3D BACKGROUND ---
+        // --- 3D BACKGROUND ---
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -202,22 +220,18 @@
         container.appendChild(renderer.domElement);
 
         const particlesGeometry = new THREE.BufferGeometry();
-        const particlesCount = 2000;
+        const particlesCount = 1800;
         const posArray = new Float32Array(particlesCount * 3);
-
-        for(let i=0; i < particlesCount * 3; i++) {
-            posArray[i] = (Math.random() - 0.5) * 10;
-        }
+        for(let i=0; i < particlesCount * 3; i++) posArray[i] = (Math.random() - 0.5) * 10;
         particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
         const material = new THREE.PointsMaterial({ size: 0.003, color: '#2563eb', transparent: true, opacity: 0.3 });
         const particlesMesh = new THREE.Points(particlesGeometry, material);
         scene.add(particlesMesh);
-
         camera.position.z = 4;
 
         function animate() {
             requestAnimationFrame(animate);
-            particlesMesh.rotation.y += 0.0003;
+            particlesMesh.rotation.y += 0.0004;
             renderer.render(scene, camera);
         }
         animate();
@@ -228,7 +242,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
 
-        // --- SMOOTH TILT EFFECT ---
+        // --- TILT EFFECT ---
         const cards = document.querySelectorAll('.tilt-element');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {

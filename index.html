@@ -3,201 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kingsly Mohan | Portfolio</title>
+    <title>Kingsly Mohan | Interactive Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- GSAP for smooth animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap');
+
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
+            margin: 0;
             overflow-x: hidden;
+            background-color: #020617;
+            font-family: 'Inter', sans-serif;
+            color: white;
         }
-        .reveal { opacity: 0; transform: translateY(30px); }
-        .line-grow { width: 0; height: 1px; background: #3b82f6; }
-        .expertise-card:hover { background: #111; }
-        .nav-blur { backdrop-filter: blur(10px); background: rgba(10, 10, 10, 0.8); }
+
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        .glass-card:hover {
+            border: 1px solid rgba(59, 130, 246, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .tech-font { font-family: 'Orbitron', sans-serif; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: #1e3a8a; border-radius: 10px; }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #60a5fa, #2563eb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center nav-blur border-b border-white/5">
-        <span class="text-lg font-bold tracking-tighter uppercase">KM / 24</span>
-        <div class="flex gap-8 text-xs font-medium uppercase tracking-widest text-zinc-400">
-            <a href="#work" class="hover:text-white transition">Experience</a>
-            <a href="#expertise" class="hover:text-white transition">Expertise</a>
-            <a href="mailto:Kingslymohan2017@gmail.com" class="hover:text-white transition">Contact</a>
-        </div>
-    </nav>
+    <div id="canvas-container"></div>
 
-    <!-- Section 1: Hero -->
-    <section class="min-h-screen flex flex-col justify-center px-8 lg:px-24">
-        <div class="max-w-6xl">
-            <h2 class="text-blue-500 font-medium mb-4 reveal uppercase tracking-[0.3em] text-sm italic">Based in Abu Dhabi, UAE</h2>
-            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter reveal mb-8 leading-none">
-                KINGSLY <br> <span class="text-zinc-500">MOHAN.</span>
-            </h1>
-            <div class="flex flex-col md:flex-row md:items-center gap-8 reveal">
-                <p class="text-lg text-zinc-400 max-w-xl leading-relaxed">
-                    Senior Pipeline Rehabilitation Engineer specializing in CIPP technology. Delivering high-precision trenchless infrastructure solutions across the Middle East.
-                </p>
-                <div class="h-px w-24 bg-zinc-800 hidden md:block"></div>
-                <div class="flex gap-4">
-                    <div class="p-3 border border-white/10 rounded-full hover:bg-white hover:text-black transition cursor-pointer">
-                        <i data-lucide="linkedin" class="w-5 h-5"></i>
-                    </div>
-                    <div class="p-3 border border-white/10 rounded-full hover:bg-white hover:text-black transition cursor-pointer">
-                        <i data-lucide="mail" class="w-5 h-5"></i>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 2: Big Stats -->
-    <section class="py-32 px-8 lg:px-24 border-y border-white/5 bg-zinc-950">
-        <div class="grid md:grid-cols-3 gap-16">
-            <div class="reveal">
-                <span class="text-sm text-zinc-500 uppercase tracking-widest mb-4 block">Proven Track Record</span>
-                <h3 class="text-6xl font-bold">300<span class="text-blue-500">+</span></h3>
-                <p class="text-zinc-400 mt-2">Kilometers of pipeline rehabilitated using advanced CIPP systems.</p>
-            </div>
-            <div class="reveal" style="transition-delay: 0.1s;">
-                <span class="text-sm text-zinc-500 uppercase tracking-widest mb-4 block">Industry Tenure</span>
-                <h3 class="text-6xl font-bold">08<span class="text-blue-500">+</span></h3>
-                <p class="text-zinc-400 mt-2">Years of progressive experience in UAE and Qatar environments.</p>
-            </div>
-            <div class="reveal" style="transition-delay: 0.2s;">
-                <span class="text-sm text-zinc-500 uppercase tracking-widest mb-4 block">Core Focus</span>
-                <h3 class="text-6xl font-bold">CIPP</h3>
-                <p class="text-zinc-400 mt-2">Specialist in UV curing, robotic cutting, and trenchless maintenance.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 3: Experience (The "Work" Section) -->
-    <section id="work" class="py-32 px-8 lg:px-24">
-        <h2 class="text-xs uppercase tracking-[0.5em] text-zinc-500 mb-16 reveal">Selected Experience</h2>
+    <!-- UI Overlay -->
+    <main class="relative z-10 max-w-6xl mx-auto px-6 py-12">
         
-        <!-- Job 1 -->
-        <div class="group py-12 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center reveal">
-            <div class="mb-4 md:mb-0">
-                <span class="text-blue-500 text-sm font-mono mb-2 block">2026 — Present</span>
-                <h3 class="text-3xl font-bold group-hover:translate-x-4 transition-transform duration-500 uppercase tracking-tighter">Veolia Middle East</h3>
-            </div>
-            <div class="text-left md:text-right">
-                <p class="text-xl text-zinc-300">Pipeline Rehabilitation Engineer</p>
-                <p class="text-sm text-zinc-500 mt-1 uppercase">Abu Dhabi, UAE</p>
-            </div>
-        </div>
-
-        <!-- Job 2 -->
-        <div class="group py-12 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center reveal">
-            <div class="mb-4 md:mb-0">
-                <span class="text-zinc-500 text-sm font-mono mb-2 block">2023 — 2026</span>
-                <h3 class="text-3xl font-bold group-hover:translate-x-4 transition-transform duration-500 uppercase tracking-tighter tracking-tighter">International Foundation Group</h3>
-            </div>
-            <div class="text-left md:text-right">
-                <p class="text-xl text-zinc-300">Operations Engineer</p>
-                <p class="text-sm text-zinc-500 mt-1 uppercase">United Arab Emirates</p>
-            </div>
-        </div>
-
-        <!-- Job 3 -->
-        <div class="group py-12 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center reveal">
-            <div class="mb-4 md:mb-0">
-                <span class="text-zinc-500 text-sm font-mono mb-2 block">2018 — 2022</span>
-                <h3 class="text-3xl font-bold group-hover:translate-x-4 transition-transform duration-500 uppercase tracking-tighter">Applus+ Velosi LLC</h3>
-            </div>
-            <div class="text-left md:text-right">
-                <p class="text-xl text-zinc-300">Rehabilitation Specialist</p>
-                <p class="text-sm text-zinc-500 mt-1 uppercase">Qatar</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4: Expertise -->
-    <section id="expertise" class="py-32 px-8 lg:px-24 bg-white text-black">
-        <div class="grid lg:grid-cols-2 gap-16">
-            <div>
-                <h2 class="text-6xl font-bold tracking-tighter leading-none mb-8 reveal">Technical <br> Ecosystem.</h2>
-                <p class="text-zinc-600 max-w-md reveal">A comprehensive suite of capabilities ranging from robotic intervention to complex condition assessment.</p>
-            </div>
-            <div class="space-y-12 reveal">
-                <div>
-                    <h4 class="text-sm uppercase tracking-widest font-bold border-b border-black/10 pb-4 mb-6">Machinery & Systems</h4>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 border border-black/10 rounded-full text-sm">ProKASRO Robotics</span>
-                        <span class="px-4 py-2 border border-black/10 rounded-full text-sm">Reline Europe</span>
-                        <span class="px-4 py-2 border border-black/10 rounded-full text-sm">UV Curing Units</span>
-                        <span class="px-4 py-2 border border-black/10 rounded-full text-sm">Inversion Drums</span>
-                    </div>
-                </div>
-                <div>
-                    <h4 class="text-sm uppercase tracking-widest font-bold border-b border-black/10 pb-4 mb-6">Inspection & QA</h4>
-                    <div class="flex flex-wrap gap-3">
-                        <span class="px-4 py-2 border border-black/10 rounded-full text-sm">IBAK IKAS Evolution</span>
-                        <span class="px-4 py-2 border border-black/10 rounded-full text-sm">IPEK Systems</span>
-                        <span class="px-4 py-2 border border-black/10 rounded-full text-sm">Defect Coding</span>
-                        <span class="px-4 py-2 border border-black/10 rounded-full text-sm">HSE Compliance</span>
+        <!-- Hero Section -->
+        <header class="flex flex-col md:flex-row items-center gap-10 min-h-[80vh] justify-center">
+            <div class="glass-card p-2 tilt-element shadow-2xl" data-tilt>
+                <div class="w-64 h-80 rounded-2xl overflow-hidden relative">
+                    <img src="https://via.placeholder.com/300x400" alt="Kingsly Mohan" class="w-full h-full object-cover">
+                    <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-blue-900 to-transparent">
+                        <p class="tech-font text-xs tracking-widest text-blue-300">OPERATIONS HEAD</p>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="py-20 px-8 lg:px-24 border-t border-white/5">
-        <div class="flex flex-col md:flex-row justify-between items-end gap-12">
-            <div>
-                <h2 class="text-5xl md:text-7xl font-bold tracking-tighter reveal mb-10">LET'S CONNECT.</h2>
-                <div class="flex flex-col gap-4 text-zinc-400 font-medium">
-                    <a href="mailto:Kingslymohan2017@gmail.com" class="hover:text-white transition text-2xl">Kingslymohan2017@gmail.com</a>
-                    <a href="tel:+971562483266" class="hover:text-white transition text-xl">+971 56 248 3266</a>
+            <div class="flex-1 text-center md:text-left">
+                <h1 class="text-5xl md:text-7xl font-bold tech-font mb-4 tracking-tighter">KINGSLY <span class="gradient-text">MOHAN</span></h1>
+                <p class="text-xl text-blue-400 font-light mb-8 tracking-widest uppercase">CIPP Specialist & Pipeline Engineer</p>
+                
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 mb-8">
+                    <a href="#" class="glass-card px-6 py-3 flex items-center gap-3 hover:bg-blue-600/20 transition group">
+                        <i class="fa-solid fa-envelope text-blue-400"></i>
+                        <span>Contact Me</span>
+                    </a>
+                    <a href="#" class="glass-card px-6 py-3 flex items-center gap-3 hover:bg-blue-600/20 transition">
+                        <i class="fa-brands fa-linkedin text-blue-400"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-3 gap-4">
+                    <div class="glass-card p-4 text-center">
+                        <div class="text-2xl font-bold tech-font text-blue-400">8+</div>
+                        <div class="text-[10px] uppercase text-slate-400">Years Exp</div>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <div class="text-2xl font-bold tech-font text-blue-400">300k</div>
+                        <div class="text-[10px] uppercase text-slate-400">Pipeline KM</div>
+                    </div>
+                    <div class="glass-card p-4 text-center">
+                        <div class="text-2xl font-bold tech-font text-blue-400">UAE</div>
+                        <div class="text-[10px] uppercase text-slate-400">Base</div>
+                    </div>
                 </div>
             </div>
-            <div class="text-zinc-500 text-xs uppercase tracking-widest">
-                Designed for Kingsly Mohan — 2024
+        </header>
+
+        <!-- Experience Grid -->
+        <section class="py-20">
+            <h2 class="tech-font text-3xl mb-12 text-center underline decoration-blue-600 underline-offset-8">Mission Logs (Experience)</h2>
+            <div class="grid gap-8">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 tilt-element" data-tilt>
+                    <div class="flex flex-col md:flex-row justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-400">Veolia Middle East Water Services</h3>
+                            <p class="text-slate-400">Pipeline Rehabilitation Engineer</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="tech-font text-sm bg-blue-900/40 px-4 py-1 rounded-full border border-blue-500/30">2026 - PRESENT</span>
+                        </div>
+                    </div>
+                    <ul class="grid md:grid-cols-2 gap-4 text-sm text-slate-300">
+                        <li class="flex gap-2"><i class="fa-solid fa-microchip text-blue-500"></i> Managing UV Curing & Robotic Cutting</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-microchip text-blue-500"></i> IBAK & IPEK CCTV Condition Assessment</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-microchip text-blue-500"></i> QA/QC Records & Method Statements</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-microchip text-blue-500"></i> HSE Compliance & Team Supervision</li>
+                    </ul>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 tilt-element" data-tilt>
+                    <div class="flex flex-col md:flex-row justify-between mb-6">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-400">Applus+ Velosi LLC</h3>
+                            <p class="text-slate-400">Pipeline Rehabilitation Engineer (Qatar)</p>
+                        </div>
+                        <div class="text-right">
+                            <span class="tech-font text-sm bg-slate-800 px-4 py-1 rounded-full">2018 - 2022</span>
+                        </div>
+                    </div>
+                    <p class="text-sm text-slate-300">Lead large-scale sewer and stormwater rehabilitation projects following Ashghal standards. Expert in defect coding and emergency shutdown operations.</p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </section>
+
+        <!-- 3D Skills Hex Grid -->
+        <section class="py-20">
+            <h2 class="tech-font text-3xl mb-12 text-center">Core Systems</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="glass-card p-6 text-center hover:scale-105 transition-transform border-t-4 border-blue-500">
+                    <i class="fa-solid fa-robot text-4xl mb-4 text-blue-400 floating"></i>
+                    <h4 class="tech-font text-sm">ProKASRO</h4>
+                    <p class="text-[10px] text-slate-500 mt-2">Robotic Cutting</p>
+                </div>
+                <div class="glass-card p-6 text-center hover:scale-105 transition-transform border-t-4 border-blue-500">
+                    <i class="fa-solid fa-camera text-4xl mb-4 text-blue-400 floating" style="animation-delay: 0.5s"></i>
+                    <h4 class="tech-font text-sm">IBAK / IPEK</h4>
+                    <p class="text-[10px] text-slate-500 mt-2">CCTV Analysis</p>
+                </div>
+                <div class="glass-card p-6 text-center hover:scale-105 transition-transform border-t-4 border-blue-500">
+                    <i class="fa-solid fa-faucet-drip text-4xl mb-4 text-blue-400 floating" style="animation-delay: 1s"></i>
+                    <h4 class="tech-font text-sm">CIPP Lining</h4>
+                    <p class="text-[10px] text-slate-500 mt-2">Trenchless Tech</p>
+                </div>
+                <div class="glass-card p-6 text-center hover:scale-105 transition-transform border-t-4 border-blue-500">
+                    <i class="fa-solid fa-shield-halved text-4xl mb-4 text-blue-400 floating" style="animation-delay: 1.5s"></i>
+                    <h4 class="tech-font text-sm">HSE / QAQC</h4>
+                    <p class="text-[10px] text-slate-500 mt-2">Safety Standard</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <script>
-        // Initialize Lucide Icons
-        lucide.createIcons();
+        // --- THREE.JS BACKGROUND SCENE ---
+        const container = document.getElementById('canvas-container');
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        container.appendChild(renderer.domElement);
 
-        // GSAP Animations
-        gsap.registerPlugin(ScrollTrigger);
+        // Create Particle Geometry
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 2500;
+        const posArray = new Float32Array(particlesCount * 3);
 
-        // Entrance Reveal Animation
-        const reveals = document.querySelectorAll('.reveal');
-        reveals.forEach((el) => {
-            gsap.to(el, {
-                scrollTrigger: {
-                    trigger: el,
-                    start: "top 85%",
-                    toggleActions: "play none none none"
-                },
-                opacity: 1,
-                y: 0,
-                duration: 1.2,
-                ease: "power4.out"
-            });
+        for(let i=0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        // Material
+        const material = new THREE.PointsMaterial({
+            size: 0.005,
+            color: '#3b82f6',
+            transparent: true,
+            opacity: 0.8
         });
 
-        // Job Row Hover Effect (Subtle)
-        const jobRows = document.querySelectorAll('.group');
-        jobRows.forEach((row) => {
-            row.addEventListener('mouseenter', () => {
-                gsap.to(row, { backgroundColor: "rgba(255,255,255,0.02)", duration: 0.3 });
+        const particlesMesh = new THREE.Points(particlesGeometry, material);
+        scene.add(particlesMesh);
+
+        camera.position.z = 3;
+
+        // Interaction
+        let mouseX = 0;
+        let mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth) - 0.5;
+            mouseY = (e.clientY / window.innerHeight) - 0.5;
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            particlesMesh.rotation.y += 0.001;
+            
+            // Subtle parallax with mouse
+            gsap.to(particlesMesh.rotation, {
+                x: -mouseY * 0.5,
+                y: mouseX * 0.5,
+                duration: 2
             });
-            row.addEventListener('mouseleave', () => {
-                gsap.to(row, { backgroundColor: "transparent", duration: 0.3 });
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Handle Resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // --- 3D TILT EFFECT ---
+        const cards = document.querySelectorAll('.tilt-element');
+        cards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
             });
         });
     </script>
